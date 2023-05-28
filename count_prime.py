@@ -1,21 +1,26 @@
-def countPrimes( n: int) -> int:
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n<3: return 0
+
+        sieve = [True] * n  
+        sieve[0:n:2] = [False] * len(sieve[0:n:2])
+        sieve[1], sieve[2] = False, True
+
+        for i in range(3, int(n**0.5)+1, 2):
+            if sieve[i] == True:
+                sieve[i*i:n:i<<1] = [False] * len(sieve[i*i:n:i<<1])
+
+        return sieve.count(True)
+"""
     count=0
-    prime = [True for i in range(n+1)]
-    p = 2
-    while (p * p <= n):
-        if (prime[p] == True):
- 
-            # Update all multiples of p
-            for i in range(p * p, n+1, p):
-                prime[i] = False
-        p += 1
- 
-    # Print all prime numbers
-    for p in range(2, n+1):
-        if prime[p]:
-            count=count+1
-    return count
-    
-    
-print(countPrimes(499979))
-#print(elimination(3,elimination(2,[1,2,3,4,5,6,7,8,9,10],10),10))
+    numbers=[i for i in range(1, n)]
+    if n<=1:
+        return 0
+    for x in range(2,n):
+        if isprime(x)==True:
+            if x*x<=n:
+                elimination(x,numbers,n)
+            
+    return len(numbers)-1
+
+"""
