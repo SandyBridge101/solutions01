@@ -1,13 +1,12 @@
 from collections import Counter
-myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
+#myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
 #print(Counter(myList).keys())
 #2 3 4 5 6 8 7 6 5 18
 N=int(input())
+shoe_sizes=input("sizes:").split()
 X=int(input())
 i=0
 profit=0
-shoe_sizes=input("sizes:").split()
-
 while i<X:
     order=input("order:").split()
     if order[0] in shoe_sizes:
@@ -20,6 +19,4 @@ while i<X:
 
 print(profit)
 
-
-print(shoe_sizes)
 
