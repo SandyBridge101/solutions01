@@ -1,14 +1,30 @@
-def minimum_crossing_time(s, current_color):
-    n = len(s)
-    time = 1  
-    
-    while s[(time - 1) % n] != current_color or s[time % n] != 'g':
-        time += 1
+def get_index(str,c):
+    return [i for i, x in enumerate(str) if x == c]
 
-    return time
+def find_max_time(index,s):
+    max_time=0
+    for x in index:
+        count=0
+        for x in range(x,len(s)):
+            if s[x]=='g':
+                break
+            else:
+                count+=1
+        if count>max_time:
+            max_time=count
 
-N=int(input())
+    return max_time
 
-for i in range(0,N):
-    s=int(input())
-    c=input()
+entry=input().split()
+s=input()
+
+s=s+s
+
+length=entry[0]
+current=entry[1]
+
+
+index=get_index(s,current)
+
+
+print(find_max_time(index,s))
