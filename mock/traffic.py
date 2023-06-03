@@ -15,16 +15,22 @@ def find_max_time(index,s):
 
     return max_time
 
-entry=input().split()
-s=input()
+N=int(input())
+times=[]
+for cases in range(0,N):
+    entry=input().split()
+    s=input()
 
-s=s+s
+    s=s+s
 
-length=entry[0]
-current=entry[1]
-
-
-index=get_index(s,current)
+    length=entry[0]
+    current=entry[1]
 
 
-print(find_max_time(index,s))
+    index=get_index(s,current)
+
+
+    times.append(find_max_time(index,s))
+    
+for t in times:
+    print(t)
