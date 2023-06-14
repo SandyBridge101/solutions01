@@ -1,17 +1,24 @@
-s=int(input())
-array=list(map(int,input().split()))
-lt=[]
-gt=[]
-eq=[]
-for x in array:
-    if x<0:
-        lt.append(x)
-    elif x==0:
-        eq.append(x)
-    elif x>0:
-        gt.append(x)
-print(len(lt),' '.join(map(str, lt)))
-print(len(gt),' '.join(map(str, gt)))
-print(len(eq),' '.join(map(str, eq)))
+n = int(input())  # Number of elements in the array
+array = list(map(int, input().split())) 
+array.sort()
 
+positives = []  # Set for positive numbers
+zeros = []  # Set for zeros
 
+# Divide the array into three sets
+negatives = array[0]
+array.pop(0)
+
+zeros = [num for num in array if num == 0]
+
+positives = [num for num in array if num != 0]
+neg = [num for num in array if num < 0]
+
+if len(neg) % 2 != 0:
+    zeros.append(positives[0])
+    positives.pop(0)
+
+# Print the sets
+print(1, negatives)
+print(len(positives), *positives)
+print(len(zeros), *zeros)
