@@ -5,7 +5,7 @@ def shift_zeros(nums):
             nums.remove(i)
             nums.append(i)
 
-    print(nums)
+    return nums
     
 nums = [0,1]
 
@@ -14,6 +14,5 @@ for i in range(0, len(nums)-1):
         nums[i]=nums[i]*2
         nums[i+1]=0
         
-shift_zeros(nums)
 
-print(nums)
+print(shift_zeros(nums))
