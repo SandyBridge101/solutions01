@@ -1,27 +1,48 @@
 
-matches = [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]
-answer=[[],[]]
+def calc_max(board_row,board_col,board):
+        max_sum=0
+        for r in range(0,board_row):
+            for c in range(0,board_col):
+                nsum=board[r][c]
+                row,col=r,c
+                #upper left
+                while row>0 and col>0:
+                    row-=1
+                    col-=1
+                    nsum=nsum+board[row][col]
+                
+                row,col=r,c
+                #upper right
+                while row>0 and col<board_col-1:
+                    row-=1
+                    col+=1
+                    nsum=nsum+board[row][col]
+                
+                row,col=r,c
+                #lower left
+                while row<board_row-1 and col>0:
+                    row+=1
+                    col-=1
+                    nsum=nsum+board[row][col]
+                
+                row,col=r,c
+                #lower right
+                while row<board_row-1 and col<board_col-1:
+                    row+=1
+                    col+=1
+                    nsum=nsum+board[row][col]
+                max_sum=max(max_sum,nsum)
+        return max_sum
 
-for m in matches:
-    count_0=0
-    count_1=0
-    x=0
-    for x in range(0,len(matches)):
-        if m[0]==matches[x][1]:
-            count_0+=1
-        if m[1]==matches[x][1]:
-            count_1+=1
-    #print(m,count_0,count_1)
-    if count_0==0:
-        print(m[0])
-        answer[0].append(m[0])
-    if count_1==1:
-        print(m[1])
-        answer[1].append(m[1])
+N=int(input())
 
-
-
-ans=[sorted(list(set(answer[0]))),sorted(list(set(answer[1])))]
-
-print(ans)
-
+for _ in range(0,N):
+    dimension=list(map(int,input().split()))
+    board_row=dimension[0]
+    board_col=dimension[1]
+    board=[list(map(int,input().split())) for i in range(0,board_row)]
+    
+    max_sum=calc_max(board_row,board_col,board)
+            
+    print(max_sum)
+                
